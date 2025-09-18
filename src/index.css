@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Main dark background for the whole app */
+    @apply bg-[#0f172a];
+  }
+}
+
+.aurora-background {
+  position: relative;
+  overflow: hidden;
+  background-color: #0f172a; /* Slate 900 */
+  /* Applying a subtle grid pattern */
+  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.aurora-background::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1200px;
+  height: 1200px;
+  background-image: radial-gradient(circle, rgba(0, 128, 255, 0.2), transparent 60%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: aurora-animation 20s linear infinite;
+  z-index: 0;
+}
+
+@keyframes aurora-animation {
+  0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+  25% { transform: translate(-40%, -60%) rotate(90deg) scale(1.2); }
+  50% { transform: translate(-50%, -50%) rotate(180deg) scale(1); }
+  75% { transform: translate(-60%, -40%) rotate(270deg) scale(1.2); }
+  100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+}
